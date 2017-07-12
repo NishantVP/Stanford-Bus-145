@@ -15,11 +15,13 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -53,37 +55,37 @@ public class MainActivity extends AppCompatActivity {
     public void sendRequestButtonClicked(View view) {
         Log.d("Info","Send Button clicked");
 
-        String urlGet ="http://10.0.0.54:8081/";
+//        String urlGet ="http:10.0.0.107:8080/IOTStanfordAttendanceSystem/stanford/attendance/studentByName/";
+//
+//        // Request a string response from the provided URL.
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, urlGet,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        // Display the first 500 characters of the response string.
+////                        mTextView.setText("Response is: "+ response.substring(0,500));
+//                        Log.d("Response",response);
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                mTextView.setText("That didn't work!");
+//            }
+//        }){
+//            @Override
+//            protected Map<String, String> getParams()
+//            {
+//                Map<String, String>  params = new HashMap<String, String>();
+//                params.put("RFID", "1234");
+//                params.put("OTP", "12345");
+//
+//                return params;
+//            }
+//        };
+//        // Add the request to the RequestQueue.
+//        queue.add(stringRequest);
 
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, urlGet,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-//                        mTextView.setText("Response is: "+ response.substring(0,500));
-                        Log.d("Response",response);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                mTextView.setText("That didn't work!");
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("RFID", "1234");
-                params.put("OTP", "12345");
-
-                return params;
-            }
-        };
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
-
-//        String urlPOST = "http://10.0.0.54:8081/quotes";
+//        String urlPOST = "http://10.0.0.107:8080/IOTStanfordAttendanceSystem/stanford/attendance/studentByName/";
 //        StringRequest postRequest = new StringRequest(Request.Method.POST, urlPOST,
 //                new Response.Listener<String>()
 //                {
@@ -110,11 +112,38 @@ public class MainActivity extends AppCompatActivity {
 //                Map<String, String>  params = new HashMap<String, String>();
 //                params.put("name", "Alif");
 //                params.put("domain", "http://itsalif.info");
-//
 //                return params;
 //            }
 //        };
 //        queue.add(postRequest);
+
+        final String URL = "http://10.0.0.107:8080/IOTStanfordAttendanceSystem/stanford/attendance/rfidByStudentName/";
+        // Post params to be sent to the server
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("firstName", "Nishant");
+        params.put("lastName", "Phatangare");
+        params.put("courseNumber", "Bus 145");
+//        params.put("PW", "password");
+
+        JsonObjectRequest request_json = new JsonObjectRequest(URL, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //Process os success response
+                        // response
+                        Log.d("Response", response.toString());
+                        mTextView.setText(response.toString());
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
+                Log.d("Error.Response", "That didn't work");
+                mTextView.setText("That didn't work!");
+            }
+        });
+        // add the request object to the queue to be executed
+        queue.add(request_json);
 
     }
 

@@ -85,7 +85,8 @@
             android:layout_below="@+id/OTPEditText"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="35dp"
-            android:text="Register" />
+            android:text="Register"
+            android:onClick="registerButtonClicked"/>
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
