@@ -69,42 +69,52 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 mTextView.setText("That didn't work!");
             }
-        });
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
-
-        String urlPOST = "http://10.0.0.54:8081/quotes";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, urlPOST,
-                new Response.Listener<String>()
-                {
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        Log.d("Response", response);
-                        mTextView.setText(response);
-                    }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
-                        Log.d("Error.Response", "That didn't work");
-                        mTextView.setText("That didn't work!");
-                    }
-                }
-        ) {
+        }){
             @Override
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("name", "Alif");
-                params.put("domain", "http://itsalif.info");
+                params.put("RFID", "1234");
+                params.put("OTP", "12345");
 
                 return params;
             }
         };
-        queue.add(postRequest);
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
+//        String urlPOST = "http://10.0.0.54:8081/quotes";
+//        StringRequest postRequest = new StringRequest(Request.Method.POST, urlPOST,
+//                new Response.Listener<String>()
+//                {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        // response
+//                        Log.d("Response", response);
+//                        mTextView.setText(response);
+//                    }
+//                },
+//                new Response.ErrorListener()
+//                {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        // error
+//                        Log.d("Error.Response", "That didn't work");
+//                        mTextView.setText("That didn't work!");
+//                    }
+//                }
+//        ) {
+//            @Override
+//            protected Map<String, String> getParams()
+//            {
+//                Map<String, String>  params = new HashMap<String, String>();
+//                params.put("name", "Alif");
+//                params.put("domain", "http://itsalif.info");
+//
+//                return params;
+//            }
+//        };
+//        queue.add(postRequest);
 
     }
 
