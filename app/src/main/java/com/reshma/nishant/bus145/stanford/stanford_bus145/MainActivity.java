@@ -1,5 +1,6 @@
 package com.reshma.nishant.bus145.stanford.stanford_bus145;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -145,6 +146,20 @@ public class MainActivity extends AppCompatActivity {
         // add the request object to the queue to be executed
         queue.add(request_json);
 
+    }
+
+    public void goToRegisterButtonClicked(View view) {
+
+        Log.d("DEBUG: ","Button Clicked");
+        Intent i = new Intent(this, RegisterActivity.class);
+        startActivity(i);
+    }
+
+    public void checkAttendanceButtonClicked(View view) {
+
+        Log.d("DEBUG: ","Button Clicked");
+        Intent i = new Intent(this, CheckAttendanceActivity.class);
+        startActivity(i);
     }
 
     @Override

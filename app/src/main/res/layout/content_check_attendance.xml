@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.reshma.nishant.bus145.stanford.stanford_bus145.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:context="com.reshma.nishant.bus145.stanford.stanford_bus145.CheckAttendanceActivity"
+    tools:showIn="@layout/activity_check_attendance">
 
     <RelativeLayout
         android:layout_width="381dp"
@@ -16,49 +16,49 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.454">
+        app:layout_constraintVertical_bias="0.909">
 
-        <Button
-            android:id="@+id/sendRequestButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"
-            android:text="Send"
-            android:onClick="sendRequestButtonClicked"/>
 
         <TextView
-            android:id="@+id/resonseTextView"
+            android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/sendRequestButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:text="Hello World!" />
-
-        <Button
-            android:id="@+id/goToRegisterButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginEnd="14dp"
-            android:layout_marginTop="13dp"
-            android:onClick="goToRegisterButtonClicked"
-            android:text="Go to Register" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="19dp"
+            android:text="Hello John Snow" />
 
         <Button
-            android:id="@+id/checkAttendanceButton"
+            android:id="@+id/showAttendanceButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/nameTextView"
+            android:layout_below="@+id/nameTextView"
+            android:layout_marginTop="14dp"
+            android:onClick="sendRequestButtonClicked"
+            android:text="Show Attendance" />
+
+        <TextView
+            android:id="@+id/attendanceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:onClick="checkAttendanceButtonClicked"
-            android:text="Go to Check Attendance" />
+            android:text="Your Attendance" />
+
+        <ListView
+            android:id="@+id/attendanceListView"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/showAttendanceButton"
+            android:layout_marginTop="20dp">
+        </ListView>
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
